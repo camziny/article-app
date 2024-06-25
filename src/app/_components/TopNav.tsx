@@ -16,8 +16,8 @@ export function TopNav() {
             </Link>
           </div>
           <div className="hidden md:flex space-x-8">
-            <Link href="/about" className="hover:text-gray-600">
-              About
+            <Link href="/favorites" className="hover:text-gray-600">
+              Favorites
             </Link>
           </div>
         </div>
@@ -31,18 +31,11 @@ export function TopNav() {
         <div className="md:hidden mt-4">
           <div className="flex flex-col items-center space-y-4">
             <Link
-              href="/"
+              href="/favorites"
               className="hover:text-gray-600"
               onClick={() => setIsOpen(false)}
             >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className="hover:text-gray-600"
-              onClick={() => setIsOpen(false)}
-            >
-              About
+              Favorites
             </Link>
           </div>
         </div>

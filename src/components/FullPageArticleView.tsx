@@ -1,6 +1,7 @@
 import { getArticle } from "@/app/lib/fetchData";
 import { Article } from "@/app/types/articles";
 import Head from "next/head";
+import FavoriteButton from "./FavoriteButton";
 
 export default async function FullPageArticleView(props: {
   id: number;
@@ -29,6 +30,10 @@ export default async function FullPageArticleView(props: {
             <p className="text-lg text-gray-800 leading-relaxed">
               {article.body}
             </p>
+          </div>
+          <div className="flex items-center mt-4">
+            <p className="text-lg mr-2">Mark as favorite:</p>
+            <FavoriteButton articleId={article.id} />
           </div>
         </div>
       </div>
