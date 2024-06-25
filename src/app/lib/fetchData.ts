@@ -1,7 +1,9 @@
-export async function getArticles(page: number, limit: number) {
+import { Article } from "../types/articles";
+
+export async function getAllArticles() {
   const query = `
-    query GetArticles($page: Int, $limit: Int) {
-      posts(options: { paginate: { page: $page, limit: $limit } }) {
+    query GetAllArticles {
+      posts {
         data {
           id
           title
@@ -9,9 +11,6 @@ export async function getArticles(page: number, limit: number) {
             name
           }
           body
-        }
-        meta {
-          totalCount
         }
       }
     }
@@ -23,10 +22,7 @@ export async function getArticles(page: number, limit: number) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        query,
-        variables: { page, limit },
-      }),
+      body: JSON.stringify({ query }),
     });
 
     if (!res.ok) {
@@ -47,7 +43,17 @@ export async function getArticles(page: number, limit: number) {
       throw new Error("GraphQL errors");
     }
 
-    return jsonResponse.data.posts;
+    const articlesWithDate: Article[] = jsonResponse.data.posts.data.map(
+      (article: Article, index: number) => {
+        const creationDate = new Date();
+        creationDate.setDate(creationDate.getDate() - index);
+        return { ...article, createdAt: creationDate.toISOString() };
+      }
+    );
+
+    return {
+      data: articlesWithDate,
+    };
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;
