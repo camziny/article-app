@@ -68,6 +68,13 @@ const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
     setSortOrder(order);
   };
 
+  const slugify = (text: string) => {
+    return text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)+/g, "");
+  };
+
   return (
     <div>
       <SearchArticles onSearch={setSearchQuery} />
@@ -80,7 +87,11 @@ const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
             key={article.id}
             className="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white"
           >
-            <Link href={`/article/${article.id}`}>
+            <Link
+              href={`/article/${article.id}/${slugify(
+                article.title
+              )}?createdAt=${encodeURIComponent(article.createdAt)}`}
+            >
               <h2 className="text-2xl font-semibold text-gray-800">
                 {article.title}
               </h2>
