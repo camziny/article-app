@@ -1,7 +1,4 @@
 import { getAllArticles } from "@/app/lib/fetchData";
-import PaginationControls from "./PaginationControls";
-import { Article } from "@/app/types/articles";
-import SearchArticles from "./SearchArticles";
 import SearchAndSortArticles from "./SearchAndSortArticle";
 
 export default async function ArticleList() {

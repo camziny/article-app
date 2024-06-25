@@ -1,10 +1,10 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { Article } from "@/app/types/articles";
 import SearchArticles from "./SearchArticles";
 import PaginationControls from "./PaginationControls";
 import DropdownMenu from "./DropDownMenu";
+import Link from "next/link";
 
 interface SearchAndSortArticlesProps {
   articles: Article[];
@@ -53,7 +53,6 @@ const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
     setFilteredArticles(updatedArticles);
   }, [sortKey, sortOrder, searchQuery, articles]);
 
-  // Pagination logic
   const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
   const paginatedArticles = filteredArticles.slice(
     (currentPage - 1) * articlesPerPage,
@@ -81,14 +80,16 @@ const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
             key={article.id}
             className="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white"
           >
-            <h2 className="text-2xl font-semibold text-gray-800">
-              {article.title}
-            </h2>
-            <p className="text-gray-600">By {article.user.name}</p>
-            <p className="text-gray-600">
-              {new Date(article.createdAt).toLocaleDateString()}
-            </p>
-            <p className="text-gray-700 mt-4">{article.body}</p>
+            <Link href={`/article/${article.id}`}>
+              <h2 className="text-2xl font-semibold text-gray-800">
+                {article.title}
+              </h2>
+              <p className="text-gray-600">By {article.user.name}</p>
+              <p className="text-gray-600">
+                {new Date(article.createdAt).toLocaleDateString()}
+              </p>
+              <p className="text-gray-700 mt-4">{article.body}</p>
+            </Link>
           </li>
         ))}
       </ul>
