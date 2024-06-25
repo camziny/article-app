@@ -1,37 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Articles App
 
-## Getting Started
+## Project Overview
 
-First, run the development server:
+This project is a small web application built with Next.js 14 and TypeScript. It displays a list of articles fetched from a GraphQL API and is optimized for SEO with server-side rendering.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Display a list of articles with title, author, and publication date.
+- Search functionality to filter articles by title.
+- Responsive and user-friendly UI.
+- Server-side rendering for SEO optimization.
+- Unique URLs for each article with proper meta tags.
+- Pagination for the list of articles.
+- Sorting feature to sort articles by date or author.
+- Handles loading states and potential errors gracefully.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Setup and Running the Project
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository:
 
-## Learn More
+   ```bash
+   git clone https://github.com/yourusername/articles-app.git
+   cd articles-app
 
-To learn more about Next.js, take a look at the following resources:
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Install dependencies
+   `pnpm install`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Run the development server
+   `pnpm dev`
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# article-app
+4. Open your browser and navigate to `http://localhost:3000`.
