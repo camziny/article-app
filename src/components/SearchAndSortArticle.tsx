@@ -5,6 +5,7 @@ import SearchArticles from "./SearchArticles";
 import PaginationControls from "./PaginationControls";
 import DropdownMenu from "./DropDownMenu";
 import Link from "next/link";
+import FavoriteButton from "./FavoriteButton";
 
 interface SearchAndSortArticlesProps {
   articles: Article[];
@@ -99,8 +100,10 @@ const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
               <p className="text-gray-600">
                 {new Date(article.createdAt).toLocaleDateString()}
               </p>
-              <p className="text-gray-700 mt-4">{article.body}</p>
             </Link>
+            <div className="mt-2 flex justify-end">
+              <FavoriteButton articleId={article.id} />
+            </div>
           </li>
         ))}
       </ul>
