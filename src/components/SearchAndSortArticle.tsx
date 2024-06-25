@@ -23,14 +23,12 @@ const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
   useEffect(() => {
     let updatedArticles = articles;
 
-    // Filter articles by search query
     if (searchQuery) {
       updatedArticles = updatedArticles.filter((article) =>
         article.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
-    // Sort articles
     if (sortKey) {
       updatedArticles = updatedArticles.sort((a, b) => {
         if (sortKey === "date") {
