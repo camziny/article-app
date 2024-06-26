@@ -20,7 +20,7 @@ This project is a small web application built with Next.js 14 and TypeScript. It
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/articles-app.git
+   git clone https://github.com/camziny/articles-app.git
    cd articles-app
 
    ```
