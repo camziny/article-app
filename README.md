@@ -25,7 +25,7 @@ This project is a small web application built with Next.js 14 and TypeScript. It
 
    ```
 
-2. Install dependencies
+2. Install dependencies<br />
    Using npm:
    `npm install`<br />
    Using pnpm:
@@ -33,7 +33,7 @@ This project is a small web application built with Next.js 14 and TypeScript. It
    Using yarn:
    `yarn install`<br />
 
-4. Run the development server
+4. Run the development server<br />
    Using npm:
    `npm dev`<br />
    Using pnpm:
