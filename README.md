@@ -35,7 +35,7 @@ This project is a small web application built with Next.js 14 and TypeScript. It
 
 4. Run the development server
    Using npm:
-   `npm dev`
+   `npm dev`__
    Using pnpm:
    `pnpm dev`
    Using yarn:
