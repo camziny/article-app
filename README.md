@@ -27,17 +27,17 @@ This project is a small web application built with Next.js 14 and TypeScript. It
 
 2. Install dependencies
    Using npm:
-   `npm install`
+   `npm install`<br />
    Using pnpm:
-   `pnpm install`
+   `pnpm install`<br />
    Using yarn:
-   `yarn install`
+   `yarn install`<br />
 
 4. Run the development server
    Using npm:
    `npm dev`<br />
    Using pnpm:
-   `pnpm dev`
+   `pnpm dev`<br />
    Using yarn:
    `yarn dev`
 
