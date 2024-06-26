@@ -46,8 +46,8 @@ This project is a small web application built with Next.js 14 and TypeScript. It
 ## Running Tests
    To run the tests, use the following command:<br />
    Using npm:
-   `npm run test`<br />
+   `npm test`<br />
    Using pnpm:
-   `pnpm run test`<br />
+   `pnpm test`<br />
    Using yarn:
    `yarn test`<br />
