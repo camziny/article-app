@@ -13,7 +13,6 @@ This project is a small web application built with Next.js 14 and TypeScript. It
 - Unique URLs for each article with proper meta tags.
 - Pagination for the list of articles.
 - Sorting feature to sort articles by date or author.
-- Handles loading states and potential errors gracefully.
 
 ## Setup and Running the Project
 
