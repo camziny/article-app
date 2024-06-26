@@ -26,9 +26,28 @@ This project is a small web application built with Next.js 14 and TypeScript. It
    ```
 
 2. Install dependencies
+   Using npm:
+   `npm install`
+   Using pnpm:
    `pnpm install`
+   Using yarn:
+   `yarn install`
 
-3. Run the development server
+4. Run the development server
+   Using npm:
+   `npm dev`
+   Using pnpm:
    `pnpm dev`
+   Using yarn:
+   `yarn dev`
 
-4. Open your browser and navigate to `http://localhost:3000`.
+5. Open your browser and navigate to `http://localhost:3000`.
+
+## Running Tests
+   To run the tests, use the following command:
+   Using npm:
+   `npm run test`
+   Using pnpm:
+   `pnpm run test`
+   Using yarn:
+   `yarn test`
