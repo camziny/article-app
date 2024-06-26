@@ -36,7 +36,7 @@ export default async function ArticleList() {
   const articles = initialData.data;
 
   return (
-    <div className="container mx-auto p-4 md:px-8">
+    <div className="container mx-auto p-4 md:px-8" data-test-id="article-list">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Articles</h1>
       <SearchAndSortArticles articles={articles} />
     </div>

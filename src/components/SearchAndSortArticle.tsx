@@ -22,7 +22,7 @@ const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
   const articlesPerPage = 10;
 
   useEffect(() => {
-    let updatedArticles = articles;
+    let updatedArticles = [...articles];
 
     if (searchQuery) {
       updatedArticles = updatedArticles.filter((article) =>
@@ -67,6 +67,7 @@ const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
   const handleSortChange = (key: "date" | "author", order: "asc" | "desc") => {
     setSortKey(key);
     setSortOrder(order);
+    setCurrentPage(1);
   };
 
   const slugify = (text: string) => {
@@ -83,10 +84,11 @@ const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
         <DropdownMenu onSortChange={handleSortChange} />
       </div>
       <ul className="space-y-6 mt-4">
-        {paginatedArticles.map((article) => (
+        {paginatedArticles.map((article, index) => (
           <li
             key={article.id}
             className="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white"
+            data-test-id={`article-item-${index}`}
           >
             <Link
               href={`/article/${article.id}/${slugify(
@@ -102,7 +104,11 @@ const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
               </p>
             </Link>
             <div className="mt-2 flex justify-end">
-              <FavoriteButton articleId={article.id} />
+              <FavoriteButton
+                articleId={article.id}
+                articleTitle={article.title}
+                index={index}
+              />
             </div>
           </li>
         ))}

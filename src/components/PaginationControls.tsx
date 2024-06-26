@@ -51,60 +51,73 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
   const largeScreenPages = getVisiblePages(totalPages, currentPage, 10);
 
   return (
-    <div className="mt-8 flex justify-center px-4">
-      <Pagination className="flex flex-wrap justify-center items-center space-x-2">
-        <PaginationContent className="flex items-center">
-          <PaginationItem className="m-1">
-            <PaginationPrevious
-              href="#"
+    <nav
+      aria-label="Pagination controls"
+      className="mt-8 flex justify-center px-4"
+    >
+      <div className="flex flex-wrap justify-center items-center space-x-2">
+        <div className="flex items-center">
+          <div className="m-1">
+            <button
+              aria-label="Previous"
+              data-test-id="pagination-previous"
               className="p-2"
               onClick={(e) => {
                 e.preventDefault();
                 if (hasPrevPage) handlePageChange(currentPage - 1);
               }}
-            />
-          </PaginationItem>
+              disabled={!hasPrevPage}
+            >
+              Previous
+            </button>
+          </div>
           {smallScreenPages.map((page) => (
-            <PaginationItem key={page} className="m-1 sm:hidden">
-              <PaginationLink
-                href="#"
+            <div key={page} className="m-1 sm:hidden">
+              <button
+                aria-label={`Page ${page}`}
+                data-test-id={`pagination-page-${page}`}
+                className={`p-2 ${page === currentPage ? "bg-gray-200" : ""}`}
                 onClick={(e) => {
                   e.preventDefault();
                   handlePageChange(page);
                 }}
-                isActive={page === currentPage}
               >
                 {page}
-              </PaginationLink>
-            </PaginationItem>
+              </button>
+            </div>
           ))}
           {largeScreenPages.map((page) => (
-            <PaginationItem key={page} className="m-1 hidden sm:inline-block">
-              <PaginationLink
-                href="#"
+            <div key={page} className="m-1 hidden sm:inline-block">
+              <button
+                aria-label={`Page ${page}`}
+                data-test-id={`pagination-page-${page}`}
+                className={`p-2 ${page === currentPage ? "bg-gray-200" : ""}`}
                 onClick={(e) => {
                   e.preventDefault();
                   handlePageChange(page);
                 }}
-                isActive={page === currentPage}
               >
                 {page}
-              </PaginationLink>
-            </PaginationItem>
+              </button>
+            </div>
           ))}
-          <PaginationItem className="m-1">
-            <PaginationNext
-              href="#"
+          <div className="m-1">
+            <button
+              aria-label="Next"
+              data-test-id="pagination-next"
               className="p-2"
               onClick={(e) => {
                 e.preventDefault();
                 if (hasNextPage) handlePageChange(currentPage + 1);
               }}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
-    </div>
+              disabled={!hasNextPage}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 };
 

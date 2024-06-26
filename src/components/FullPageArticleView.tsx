@@ -33,7 +33,11 @@ export default async function FullPageArticleView(props: {
           </div>
           <div className="flex items-center mt-4">
             <p className="text-lg mr-2">Mark as favorite:</p>
-            <FavoriteButton articleId={article.id} />
+            <FavoriteButton
+              articleId={article.id}
+              articleTitle={article.title}
+              index={0}
+            />
           </div>
         </div>
       </div>

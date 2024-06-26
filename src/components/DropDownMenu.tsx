@@ -34,8 +34,9 @@ const DropdownMenu: React.FC<{
           className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none"
           id="options-menu"
           aria-haspopup="true"
-          aria-expanded="true"
+          aria-expanded={isOpen ? "true" : "false"}
           onClick={toggleDropdown}
+          data-test-id="sort-dropdown-button"
         >
           Sort by
           <svg
@@ -59,12 +60,14 @@ const DropdownMenu: React.FC<{
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="options-menu"
+          data-test-id="sort-dropdown-menu"
         >
           <div className="py-1" role="none">
             <button
               onClick={() => handleSortChange("date")}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
               role="menuitem"
+              data-test-id="sort-date-button"
             >
               {getSortLabel("date", sortOrder)}
             </button>
@@ -72,6 +75,7 @@ const DropdownMenu: React.FC<{
               onClick={() => handleSortChange("author")}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
               role="menuitem"
+              data-test-id="sort-author-button"
             >
               {getSortLabel("author", sortOrder)}
             </button>
