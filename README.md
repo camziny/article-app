@@ -44,10 +44,10 @@ This project is a small web application built with Next.js 14 and TypeScript. It
 5. Open your browser and navigate to `http://localhost:3000`.
 
 ## Running Tests
-   To run the tests, use the following command:
+   To run the tests, use the following command:<br />
    Using npm:
-   `npm run test`
+   `npm run test`<br />
    Using pnpm:
-   `pnpm run test`
+   `pnpm run test`<br />
    Using yarn:
-   `yarn test`
+   `yarn test`<br />
