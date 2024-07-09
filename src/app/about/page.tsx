@@ -24,7 +24,7 @@ const AboutPage: React.FC = () => {
             />
           </div>
           <p className="text-lg text-gray-700 mb-6">
-            Welcome to Tech News Aggregator. This is a collection of the latest
+            Welcome to tech news aggregator. This is a collection of the latest
             and most relevant tech news articles from various reliable sources.
             The goal is to provide you with up-to-date information and insights
             in the world of technology, all in one place.
