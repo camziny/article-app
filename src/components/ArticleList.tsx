@@ -1,6 +1,8 @@
 import React from "react";
 import { getAllArticles } from "@/app/lib/fetchData";
 import SearchAndSortArticles from "./SearchAndSortArticle";
+import Image from "next/image";
+import techNews from "../data/images/techNews.png";
 
 interface ArticleListProps {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -42,9 +44,9 @@ const ArticleList: React.FC<ArticleListProps> = async ({ searchParams }) => {
 
   return (
     <div className="container mx-auto p-4 md:px-8" data-test-id="article-list">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Tech News Aggregator
-      </h1>
+      <div className="flex justify-center mb-8">
+        <Image src={techNews} alt="tech news logo" width={350} height={350} />
+      </div>
       <SearchAndSortArticles articles={articles} searchParams={searchParams} />
     </div>
   );
