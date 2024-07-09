@@ -1,29 +1,19 @@
 import { Article } from "../types/articles";
 
-export async function getAllArticles() {
-  const query = `
-    query GetAllArticles {
-      posts {
-        data {
-          id
-          title
-          user {
-            name
-          }
-          body
-        }
-      }
-    }
-  `;
+const NEWS_API_KEY = process.env.NEWS_API_KEY;
+const NEWS_API_URL = `https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=${NEWS_API_KEY}`;
 
+function cleanContent(content: string): string {
+  if (!content) {
+    return "Content not available.";
+  }
+
+  return content.replace(/\s\[\+\d+\schars\]$/, "");
+}
+
+export async function getAllArticles() {
   try {
-    const res = await fetch("https://graphqlzero.almansi.me/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query }),
-    });
+    const res = await fetch(NEWS_API_URL);
 
     if (!res.ok) {
       const errorText = await res.text();
@@ -38,16 +28,20 @@ export async function getAllArticles() {
 
     const jsonResponse = await res.json();
 
-    if (jsonResponse.errors) {
-      console.error("GraphQL errors:", jsonResponse.errors);
-      throw new Error("GraphQL errors");
+    if (jsonResponse.status !== "ok") {
+      console.error("API errors:", jsonResponse);
+      throw new Error("API errors");
     }
 
-    const articlesWithDate: Article[] = jsonResponse.data.posts.data.map(
-      (article: Article, index: number) => {
-        const creationDate = new Date();
-        creationDate.setDate(creationDate.getDate() - index);
-        return { ...article, createdAt: creationDate.toISOString() };
+    const articlesWithDate: Article[] = jsonResponse.articles.map(
+      (article: any, index: number) => {
+        return {
+          id: index.toString(),
+          title: article.title,
+          body: article.description,
+          user: { name: article.author || "Unknown" },
+          createdAt: new Date(article.publishedAt).toISOString(),
+        };
       }
     );
 
@@ -61,30 +55,8 @@ export async function getAllArticles() {
 }
 
 export async function getArticle(id: number): Promise<Article> {
-  const query = `
-    query GetArticle($id: ID!) {
-      post(id: $id) {
-        id
-        title
-        user {
-          name
-        }
-        body
-      }
-    }
-  `;
-
   try {
-    const res = await fetch("https://graphqlzero.almansi.me/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query,
-        variables: { id },
-      }),
-    });
+    const res = await fetch(NEWS_API_URL);
 
     if (!res.ok) {
       const errorText = await res.text();
@@ -99,13 +71,27 @@ export async function getArticle(id: number): Promise<Article> {
 
     const jsonResponse = await res.json();
 
-    if (jsonResponse.errors) {
-      console.error("GraphQL errors:", jsonResponse.errors);
-      throw new Error("GraphQL errors");
+    if (jsonResponse.status !== "ok") {
+      console.error("API errors:", jsonResponse);
+      throw new Error("API errors");
     }
 
-    const article = jsonResponse.data.post;
-    return { ...article, createdAt: new Date().toISOString() };
+    const articleData = jsonResponse.articles[id];
+    if (!articleData) {
+      throw new Error(`Article with id ${id} not found`);
+    }
+
+    const article: Article = {
+      id: id.toString(),
+      title: articleData.title,
+      body: cleanContent(articleData.content),
+      description: articleData.description,
+      user: { name: articleData.author || "Unknown" },
+      createdAt: new Date(articleData.publishedAt).toISOString(),
+      url: articleData.url,
+    };
+
+    return article;
   } catch (error) {
     console.error("Error fetching data:", error);
     throw error;

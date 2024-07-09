@@ -7,7 +7,7 @@ import { TopNav } from "./_components/TopNav";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Articles App",
+  title: "Tech News App",
   description: "By Cam Ziny",
 };
 

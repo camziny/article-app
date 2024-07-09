@@ -6,6 +6,10 @@ export interface Article {
   id: string;
   title: string;
   body: string;
-  user: User;
+  description: string;
+  user: {
+    name: string;
+  };
   createdAt: string;
+  url: string;
 }

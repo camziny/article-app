@@ -53,5 +53,12 @@ export default async function ArticlePage({ params }: Props) {
     throw new Error("Article not found");
   }
 
-  return <FullPageArticleView id={idAsNumber} createdAt={article.createdAt} />;
+  return (
+    <FullPageArticleView
+      id={idAsNumber}
+      createdAt={article.createdAt}
+      url={article.url}
+      description={article.description}
+    />
+  );
 }
