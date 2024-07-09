@@ -1,7 +1,12 @@
+import React from "react";
 import { getAllArticles } from "@/app/lib/fetchData";
 import SearchAndSortArticles from "./SearchAndSortArticle";
 
-export default async function ArticleList() {
+interface ArticleListProps {
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+const ArticleList: React.FC<ArticleListProps> = async ({ searchParams }) => {
   let initialData;
   try {
     initialData = await getAllArticles();
@@ -40,7 +45,9 @@ export default async function ArticleList() {
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
         Tech News Aggregator
       </h1>
-      <SearchAndSortArticles articles={articles} />
+      <SearchAndSortArticles articles={articles} searchParams={searchParams} />
     </div>
   );
-}
+};
+
+export default ArticleList;

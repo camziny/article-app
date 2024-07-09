@@ -9,6 +9,7 @@ import FavoriteButton from "./FavoriteButton";
 
 interface SearchAndSortArticlesProps {
   articles: Article[];
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 const SearchAndSortArticles: React.FC<SearchAndSortArticlesProps> = ({
